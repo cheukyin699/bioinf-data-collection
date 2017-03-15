@@ -1,0 +1,22 @@
+Attribute,Program,File Extension,Cropped(N30)/Whole
+Tiny|pepprop|Cropped
+Small|pepprop|Cropped
+Aliphatic|pepprop|Cropped
+Aromatic|pepprop|Cropped
+Polar|pepprop|Cropped
+Non-Polar|pepprop|Cropped
+Charged|pepprop|Cropped
+Basic |pepprop|Cropped
+Acidic|pepprop|Cropped
+Molecular Weight|pepinfo|Whole
+Charge|pepinfo|Cropped
+A280 Molar Extinction Coefficients|pepinfo|Cropped
+A280 Extinction Coefficients 1mg/ml|pepinfo|Cropped
+Probabilitiy of expression in inclusion bodies |pepinfo|Cropped
+Isoelectric Point(Theoretical pI)|protout|Cropped
+Codon Adaption index|cai|Whole
+Instability Index|protout|Whole
+Aliphatic index|protout|Cropped
+GRAVY score|protout|Cropped
+N-Terminal disorder|poodle|Cropped
+G+C content|gpc|Whole

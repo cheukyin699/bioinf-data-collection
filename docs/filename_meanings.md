@@ -36,7 +36,7 @@ Molecular Weight | pepinfo | Whole
 Charge    | pepinfo   | N30
 A280 Molar Extinction Coefficients  | pepinfo | N30
 A280 Extinction Coefficients 1mg/ml | pepinfo | N30
-Probabilitiy of expression in inclusion bodies | pepinfo | N30
+Probability of expression in inclusion bodies | pepinfo | N30
 Isoelectric Point(Theoretical pI)   | protout | N30
 Codon Adaption index | cai     | Whole
 Instability Index    | protout | Whole
@@ -45,7 +45,7 @@ GRAVY score          | protout | N30
 N-Terminal disorder  | poodle  | N30
 G+C content          | gpc     | Whole
 
-## Content in Various Types of Files
+## Content in Various Types of Input Files
 
 ### PEPPROP (*.pepprop)
 
@@ -71,10 +71,12 @@ Delimited by numerous spaces.
 ---
 Col 1: Protein Name
 Col 2: Molecular Weight
+Col 3: Average Residue Weight
+Col 4: Isoelectric Point
 Col 5: Charge
-Col 6: Isoelectric Point (Theoretical pI)
-Col 4: A280 Molar Extinction Coefficients
-Col 5: A280 Extinction Coefficients 1mg/ml
+Col 6: A280 Molar Extinction Coefficients
+Col 7: A280 Extinction Coefficients
+Col 8: Improbability of Expression in Inclusion Bodies
 ---
 
 ### PROTOUT (*.protout)
@@ -84,8 +86,11 @@ Delimited by a tab. Each entry on the table is spaced out with a new-line.
 ---
 Col 1: Protein Name
 Col 2: Molecular Weight
-Col 3: Charge (?)
-Col 4: 
+Col 3: Theoretical pI
+Col 4: A280 Extinction Coefficients 1mg/mL
+Col 5: Instability Index
+Col 6: Aliphatic Index
+Col 7: GRAVY
 ---
 
 ### CAI (*.cai)
@@ -99,7 +104,7 @@ Col 2: Codon Adaption Index
 
 ### POODLE (*.poodle)
 
-Delimited by tabs. Note:
+Delimited by tabs. For the filename, note:
 
 > Everything but `<cropped?>` is in lower case.
 
@@ -117,3 +122,34 @@ Delimited by tabs.
 Col 1: Protein Name
 Col 2: G+C Content
 ---
+
+## Content in Various Types of Output Files
+
+Both output files are in CSV format with the following columns:
+
+---
+Col 1: Protein Name
+Col 2: Tiny
+Col 3: Small
+Col 4: Aliphatic
+Col 5: Aromatic
+Col 6: Non-Polar
+Col 7: Polar
+Col 8: Charged
+Col 9: Basic
+Col 10: Acidic
+Col 11: Isoelectric Point
+Col 12: Charge
+Col 13: A280 Molar Coefficients
+Col 14: A280 Extinction Coefficients 1mg/mL
+Col 15: Probability of Expression in Inclusion Bodies
+Col 16: Instability Index
+Col 17: Aliphatic Index
+Col 18: GRAVY
+Col 19: CAI
+Col 20: GPC Content
+Col 21: Molecular Weight
+Col 22: N-30 Disorder
+Col 23: Polarity
+---
+

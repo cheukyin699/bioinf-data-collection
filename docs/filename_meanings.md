@@ -59,7 +59,7 @@ Protein Name | Tiny Property Mole% | Small Property Mole% | Aliphatic Property M
 
 Delimited by numerous spaces.
 
-Col 1 | Col 2 | Col 3 | Col 4 | Col 5 | Col 6 | Col 7 | Col 8 
+Col 1 | Col 2 | Col 3 | Col 4 | Col 5 | Col 6 | Col 7 | Col 8
 ---|---|---|---|---|---|---|---
 Protein Name | Molecular Weight | Average Residue Weight | Isoelectric Point | Charge | A280 Molar Extinction Coefficients | A280 Extinction Coefficients | Improbability of Expression in Inclusion Bodies
 
@@ -101,29 +101,6 @@ Protein Name | G+C Content
 
 Both output files are in CSV format with the following columns:
 
----
-Col 1: Protein Name
-Col 2: Tiny
-Col 3: Small
-Col 4: Aliphatic
-Col 5: Aromatic
-Col 6: Non-Polar
-Col 7: Polar
-Col 8: Charged
-Col 9: Basic
-Col 10: Acidic
-Col 11: Isoelectric Point
-Col 12: Charge
-Col 13: A280 Molar Coefficients
-Col 14: A280 Extinction Coefficients 1mg/mL
-Col 15: Probability of Expression in Inclusion Bodies
-Col 16: Instability Index
-Col 17: Aliphatic Index
-Col 18: GRAVY
-Col 19: CAI
-Col 20: GPC Content
-Col 21: Molecular Weight
-Col 22: N-30 Disorder
-Col 23: Polarity
----
-
+Col 1 | Col 2 | Col 3 | Col 4 | Col 5 | Col 6 | Col 7 | Col 8 | Col 9 | Col 10 | Col 11 | Col 12 | Col 13 | Col 14 | Col 15 | Col 16 | Col 17 | Col 18 | Col 19 | Col 20 | Col 21 | Col 22 | Col 23
+---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
+Protein Name | Tiny | Small | Aliphatic | Aromatic | Non-Polar | Polar | Charged | Basic | Acidic | Isoelectric Point | Charge | A280 Molar Coefficients | A280 Extinction Coefficients 1mg/mL | Probability of Expression in Inclusion Bodies | Instability Index | Aliphatic Index | GRAVY | CAI | GPC Content | Molecular Weight | N-30 Disorder | Polarity

@@ -51,56 +51,33 @@ G+C content          | gpc     | Whole
 
 Delimited by numerous spaces.
 
----
-Col 1: Protein Name
-Col 2: Tiny Property Mole%
-Col 3: Small Property Mole%
-Col 4: Aliphatic Property Mole%
-Col 5: Aromatic Property Mole%
-Col 6: Non-Polar Mole%
-Col 7: Polar Mole%
-Col 8: Charged Mole%
-Col 9: Basic Mole%
-Col 10: Acidic Mole%
----
+Col 1 | Col 2 | Col 3 | Col 4 | Col 5 | Col 6 | Col 7 | Col 8 | Col 9 | Col 10
+---|---|---|---|---|---|---|---|---|---
+Protein Name | Tiny Property Mole% | Small Property Mole% | Aliphatic Property Mole% | Aromatic Property Mole% | Non-Polar Mole% | Polar Mole% | Charged Mole% | Basic Mole% | Acidic Mole%
 
 ### PEPINFO (*.pepinfo)
 
 Delimited by numerous spaces.
 
----
-Col 1: Protein Name
-Col 2: Molecular Weight
-Col 3: Average Residue Weight
-Col 4: Isoelectric Point
-Col 5: Charge
-Col 6: A280 Molar Extinction Coefficients
-Col 7: A280 Extinction Coefficients
-Col 8: Improbability of Expression in Inclusion Bodies
----
+Col 1 | Col 2 | Col 3 | Col 4 | Col 5 | Col 6 | Col 7 | Col 8 
+---|---|---|---|---|---|---|---
+Protein Name | Molecular Weight | Average Residue Weight | Isoelectric Point | Charge | A280 Molar Extinction Coefficients | A280 Extinction Coefficients | Improbability of Expression in Inclusion Bodies
 
 ### PROTOUT (*.protout)
 
 Delimited by a tab. Each entry on the table is spaced out with a new-line.
 
----
-Col 1: Protein Name
-Col 2: Molecular Weight
-Col 3: Theoretical pI
-Col 4: A280 Extinction Coefficients 1mg/mL
-Col 5: Instability Index
-Col 6: Aliphatic Index
-Col 7: GRAVY
----
+Col 1 | Col 2 | Col 3 | Col 4 | Col 5 | Col 6 | Col 7
+---|---|---|---|---|---|---
+Protein Name | Molecular Weight | Charge | Theoretical pI | Instability Index | Aliphatic Index | Hydropathicity
 
 ### CAI (*.cai)
 
 Delimited by 4 spaces. Very neat.
 
----
-Col 1: Protein Name
-Col 2: Codon Adaption Index
----
+Col 1 | Col 2
+---|---
+Protein Name | Codon Adaption Index
 
 ### POODLE (*.poodle)
 
@@ -108,20 +85,17 @@ Delimited by tabs. For the filename, note:
 
 > Everything but `<cropped?>` is in lower case.
 
----
-Col 1: Protein Name
-Col 2: IDK LOL
-Col 3: ????
----
+Col 1 | Col 2 | Col 3
+---|---|---
+Protein Name | I actually don't know | N-Terminal Disorder (highly likely)
 
 ### GPC (*.gpc)
 
 Delimited by tabs.
 
----
-Col 1: Protein Name
-Col 2: G+C Content
----
+Col 1 | Col 2
+---|---
+Protein Name | G+C Content
 
 ## Content in Various Types of Output Files
 

@@ -7,7 +7,7 @@ functioning WEKA file.
 ## Usage
 
 ```sh
-./collect_attributes.py <FOLDER NAME> <SPECIMEN NAME> [-d|--directory] <DIRECTORY>
+./collect_attributes.py <FOLDER NAME> <SPECIMEN NAME> [-o|--output] <DIRECTORY>
 ```
 
 **FOLDER NAME**: Name of folder where all the files are (i.e. `DATA/`). **Note**:
@@ -22,4 +22,4 @@ contain the `/` or `\` at the end.
 Outputs 2 files: 1 file of training data and another for testing. Both files are
 in comma-separated value format. The output data will be named
 `<SPECIMEN NAME>_Training.csv` and `<SPECIMEN NAME>_Testing.csv`. They will be
-written to the current directory, or `<DIRECTOR>` if that option is specified.
+written to the current directory, or `<DIRECTORY>` if that option is specified.

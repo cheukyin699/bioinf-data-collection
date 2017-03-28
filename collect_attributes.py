@@ -13,15 +13,15 @@ parser.add_argument('folder', metavar='<folder>', type=str,
                     help='name of folder where all the data files are. Must end with slash')
 parser.add_argument('specimen', metavar='<specimen>', type=str,
                     help='name of specimen (i.e. Ecoli). Capitalization is optional')
-parser.add_argument('-d', '--directory', type=str, metavar='dir', default='./',
+parser.add_argument('-o', '--output', type=str, metavar='dir', default='./',
                     help='directory of output files (default: current directory)')
 # Arguments stored with attributes .folder, .specimen, and .directory
 # Everything is stored correctly because that's how argparse works.
 args = parser.parse_args()
 
 # Output filenames
-training_filename = args.directory + '%s_Training.csv' % args.specimen
-testing_filename = args.directory + '%s_Testing.csv' % args.specimen
+training_filename = args.output + '%s_Training.csv' % args.specimen
+testing_filename = args.output + '%s_Testing.csv' % args.specimen
 
 # Input filename (template)
 template = args.folder + '%s_%s_%s.%s'

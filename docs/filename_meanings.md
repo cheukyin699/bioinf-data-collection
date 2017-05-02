@@ -87,7 +87,7 @@ Delimited by tabs. For the filename, note:
 
 Col 1 | Col 2 | Col 3
 ---|---|---
-Protein Name | I actually don't know | N-Terminal Disorder (highly likely)
+Protein Name | Whole Average | N-Terminal Disorder (highly likely)
 
 ### GPC (*.gpc)
 

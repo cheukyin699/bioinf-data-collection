@@ -32,7 +32,7 @@ Col | Attribute | Extension | N30/WHOLE
 6 | Charged   | pepprop   | N30
 7 | Basic     | pepprop   | N30
 8 | Acidic    | pepprop   | N30
-9 | Molecular Weight | pepinfo | Whole
+9 | Molecular Weight | protout | Whole
 10| Charge    | pepinfo   | N30
 11| A280 Molar Extinction Coefficients  | pepinfo | N30
 12| A280 Extinction Coefficients 1mg/ml | pepinfo | N30

@@ -21,29 +21,29 @@ To be processed correctly, the filenames should be named like this:
 
 ## Various Attributes
 
-Attribute | Extension | N30/WHOLE
-----------|-----------|----------
-Tiny      | pepprop   | N30
-Small     | pepprop   | N30
-Aliphatic | pepprop   | N30
-Aromatic  | pepprop   | N30
-Polar     | pepprop   | N30
-Non-Polar | pepprop   | N30
-Charged   | pepprop   | N30
-Basic     | pepprop   | N30
-Acidic    | pepprop   | N30
-Molecular Weight | pepinfo | Whole
-Charge    | pepinfo   | N30
-A280 Molar Extinction Coefficients  | pepinfo | N30
-A280 Extinction Coefficients 1mg/ml | pepinfo | N30
-Probability of expression in inclusion bodies | pepinfo | N30
-Isoelectric Point(Theoretical pI)   | protout | N30
-Codon Adaption index | cai     | Whole
-Instability Index    | protout | Whole
-Aliphatic index      | protout | N30
-GRAVY score          | protout | N30
-N-Terminal disorder  | poodle  | N30
-G+C content          | gpc     | Whole
+Col | Attribute | Extension | N30/WHOLE
+----|-----------|-----------|----------
+0 | Tiny      | pepprop   | N30
+1 | Small     | pepprop   | N30
+2 | Aliphatic | pepprop   | N30
+3 | Aromatic  | pepprop   | N30
+4 | Polar     | pepprop   | N30
+5 | Non-Polar | pepprop   | N30
+6 | Charged   | pepprop   | N30
+7 | Basic     | pepprop   | N30
+8 | Acidic    | pepprop   | N30
+9 | Molecular Weight | protout | Whole
+10| Charge    | pepinfo   | N30
+11| A280 Molar Extinction Coefficients  | pepinfo | N30
+12| A280 Extinction Coefficients 1mg/ml | pepinfo | N30
+13| Probability of expression in inclusion bodies | pepinfo | N30
+14| Isoelectric Point(Theoretical pI)   | protout | Whole
+15| Codon Adaption index | cai     | Whole
+16| Instability Index    | protout | N30
+17| Aliphatic index      | protout | N30
+18| GRAVY score          | protout | N30
+19| N-Terminal disorder  | poodle  | N30
+20| G+C content          | gpc     | Whole
 
 ## Content in Various Types of Input Files
 

@@ -40,23 +40,24 @@ CSV_HEADER = ','.join([
         'Tiny',
         'Small',
         'Aliphatic',
+        'Aromatic',
         'Non-Polar',
         'Polar',
         'Charged',
         'Basic',
         'Acidic',
-        'Isoelectric Point',
+        'Molecular Weight',
         'Charge',
         'A280 Molar Extinction Coefficients',
         'A280 Extinction Coefficients 1mg/mL',
-        'Probability of expression in inclusion bodies',
+        'Improbability of expression in inclusion bodies',
+        'Isoelectric Point',
+        'CAI',
         'Instability Index',
         'Aliphatic Index',
         'GRAVY',
-        'CAI',
-        'GPC Content',
-        'Molecular Weight',
         'N-30 Disorder',
+        'GPC Content',
         'Polarity'
         ])
 
@@ -127,7 +128,7 @@ def parse_pepinfo(d, line, t):
         d[cols[0]][13] = cols[7]
     #elif t == 'WHOLE':
         # Molecular Weight
-        d[cols[0]][19] = cols[1]
+        #d[cols[0]][9] = cols[1]
     else:
         raise RuntimeError('error: invalid argument %s' % t)
 
@@ -147,16 +148,18 @@ def parse_protout(d, line, t):
     cols = line.split()
 
     if t == 'N30':
-        # Isoelectric Point
-        d[cols[0]][9] = cols[3]
+        # Instability Index
+        d[cols[0]][16] = cols[4]
         # Aliphatic Index
-        d[cols[0]][15] = cols[5]
+        d[cols[0]][17] = cols[5]
         # GRAVY score
         # (Grand Average of hydropathy)
-        d[cols[0]][16] = cols[6]
+        d[cols[0]][18] = cols[6]
     elif t == 'WHOLE':
-        # Instability Index
-        d[cols[0]][14] = cols[4]
+        # Isoelectric Point
+        d[cols[0]][14] = cols[3]
+        # Molecular Weight
+        d[cols[0]][9] = cols[1]
     else:
         raise RuntimeError('error: invalid argument %s' % t)
 
@@ -174,7 +177,7 @@ def parse_cai(d, line):
     '''
     cols = line.split()
 
-    d[cols[0]][17] = cols[1]
+    d[cols[0]][15] = cols[1]
 
 def parse_poodle(d, line):
     '''
@@ -190,7 +193,7 @@ def parse_poodle(d, line):
     '''
     cols = line.split()
 
-    d[cols[0]][20] = cols[2]
+    d[cols[0]][19] = cols[2]
 
 def parse_gpc(d, line):
     '''
@@ -206,7 +209,7 @@ def parse_gpc(d, line):
     '''
     cols = line.split()
 
-    d[cols[0]][18] = cols[1]
+    d[cols[0]][20] = cols[1]
 
 
 pos_templ = make_type_templates('pos')
@@ -263,17 +266,20 @@ combined_training = []
 combined_testing = []
 for name, attrs in positives.items():
     combined_training.append(list(range(NUM_ATTRIBUTES+2)))
-    combined_training[-1][1:] = attrs
+    for i in range(NUM_ATTRIBUTES):
+        combined_training[-1][i+1] = str(attrs[i])
     combined_training[-1][-1] = POSITIVE
     combined_training[-1][0] = name
 for name, attrs in negatives.items():
     combined_training.append(list(range(NUM_ATTRIBUTES+2)))
-    combined_training[-1][1:] = attrs
+    for i in range(NUM_ATTRIBUTES):
+        combined_training[-1][i+1] = str(attrs[i])
     combined_training[-1][-1] = NEGATIVE
     combined_training[-1][0] = name
 for name, attrs in tests.items():
     combined_testing.append(list(range(NUM_ATTRIBUTES+2)))
-    combined_testing[-1][1:] = attrs
+    for i in range(NUM_ATTRIBUTES):
+        combined_testing[-1][i+1] = str(attrs[i])
     combined_testing[-1][-1] = TEST
     combined_testing[-1][0] = name
 combined_training.sort(key=lambda i: i[0])

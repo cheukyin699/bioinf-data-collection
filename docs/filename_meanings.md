@@ -37,9 +37,9 @@ Col | Attribute | Extension | N30/WHOLE
 11| A280 Molar Extinction Coefficients  | pepinfo | N30
 12| A280 Extinction Coefficients 1mg/ml | pepinfo | N30
 13| Probability of expression in inclusion bodies | pepinfo | N30
-14| Isoelectric Point(Theoretical pI)   | protout | N30
+14| Isoelectric Point(Theoretical pI)   | protout | Whole
 15| Codon Adaption index | cai     | Whole
-16| Instability Index    | protout | Whole
+16| Instability Index    | protout | N30
 17| Aliphatic index      | protout | N30
 18| GRAVY score          | protout | N30
 19| N-Terminal disorder  | poodle  | N30

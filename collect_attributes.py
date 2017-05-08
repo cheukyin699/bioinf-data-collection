@@ -25,8 +25,9 @@ args = parser.parse_args()
 
 # Output filenames
 training_filename = args.output + '%s_Training.csv' % args.specimen
-# The ALL option will only use the one below
 testing_filename = args.output + '%s_Testing.csv' % args.specimen
+# The ALL option will only use the one below
+all_filename = args.output + '%s_All.csv' % args.specimen
 
 # Input filename (template)
 template = args.folder + '%s_%s_%s.%s'
@@ -265,7 +266,7 @@ if args.is_all:
 
     # Write everything to CSV file
     try:
-        test_file = open(testing_filename, 'w')
+        test_file = open(all_filename, 'w')
 
         # Write the headers
         test_file.write(CSV_HEADER + '\n')

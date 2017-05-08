@@ -29,9 +29,9 @@ template = args.folder + '%s_%s_%s.%s'
 # Total number of attributes (not counting Polarity)
 NUM_ATTRIBUTES = 21
 # What to say if the protein reads positive
-POSITIVE = 'POSITIVE'
+POSITIVE = 'TRUE'
 # What to say if the protein reads negative
-NEGATIVE = 'NEGATIVE'
+NEGATIVE = 'FALSE'
 # What to say if the protein reads negative
 TEST = '?'
 # CSV file header
@@ -58,7 +58,7 @@ CSV_HEADER = ','.join([
         'GRAVY',
         'N-30 Disorder',
         'GPC Content',
-        'Polarity'
+        'Effector'
         ])
 
 
@@ -73,15 +73,14 @@ def make_type_templates(t):
     A list of fill-ins for the template for input filenames.
     '''
     s = t.lower()
-    c = t.capitalize()
-    s_l = args.specimen.lower()
-    return [(args.specimen, 'N30',     c, 'pepprop'),
-            (args.specimen, 'N30',     c, 'pepinfo'),
-            (args.specimen, 'N30',     c, 'protout'),
-            (args.specimen, 'WHOLE',   s, 'protout'),
-            (args.specimen, 'Nuc',     c, 'cai'),
-            (          s_l, 'N30',     s, 'poodle'),
-            (args.specimen, 'Nuc',     c, 'gpc')]
+    s_c = args.specimen.capitalize()
+    return [(s_c, 'N30',   s, 'pepprop'),
+            (s_c, 'N30',   s, 'pepinfo'),
+            (s_c, 'N30',   s, 'protout'),
+            (s_c, 'WHOLE', s, 'protout'),
+            (s_c, 'Nuc',   s, 'cai'),
+            (s_c, 'N30',   s, 'poodle'),
+            (s_c, 'Nuc',   s, 'gpc')]
 
 def parse_pepprop(d, line):
     '''

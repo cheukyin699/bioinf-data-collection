@@ -3,7 +3,7 @@ import argparse as ag
 import sys
 from collections import defaultdict
 
-# Argument parsing (just don't a bunch of if statements and get screwed over,
+# Argument parsing (just don't do a bunch of if statements and get screwed over,
 # m'kay?)
 parser = ag.ArgumentParser(
 description='''turns a bunch of attribute data into
@@ -15,12 +15,17 @@ parser.add_argument('specimen', metavar='<specimen>', type=str,
                     help='name of specimen (i.e. Ecoli). Capitalization is optional')
 parser.add_argument('-o', '--output', type=str, metavar='dir', default='./',
                     help='directory of output files (default: current directory)')
+parser.add_argument('-a', '--all', default=False, const=True,
+                    action='store_const', dest='is_all',
+                    help='program doesn\'t discriminate ' +
+                    '(no positive / negative / training) (default: they discriminate)')
 # Arguments stored with attributes .folder, .specimen, and .directory
 # Everything is stored correctly because that's how argparse works.
 args = parser.parse_args()
 
 # Output filenames
 training_filename = args.output + '%s_Training.csv' % args.specimen
+# The ALL option will only use the one below
 testing_filename = args.output + '%s_Testing.csv' % args.specimen
 
 # Input filename (template)
@@ -210,30 +215,19 @@ def parse_gpc(d, line):
 
     d[cols[0]][20] = cols[1]
 
-
-pos_templ = make_type_templates('pos')
-negs_templ = make_type_templates('neg')
-tests_templ = make_type_templates('test')
-
 # Every entry is a list with size 22 - 1 for each attribute, as specified per
 # the documentation. For info on the order, see `docs/filename_meanings.md`
 # In vim, put your cursor at the start of the filename, and press <C-W>gf.
 def defaults():
     return list(range(NUM_ATTRIBUTES))
 
-positives = defaultdict(defaults)
-negatives = defaultdict(defaults)
-tests = defaultdict(defaults)
 
-# This is for less repetition
-templ_dict_pairs = [
-        (pos_templ, positives),
-        (negs_templ, negatives),
-        (tests_templ, tests)]
+if args.is_all:
+    all_templ = make_type_templates('all')
+    alls = defaultdict(defaults)
 
-# Go through the pair of templates-dictionaries, adding to them accordingly
-for ts, d in templ_dict_pairs:
-    for t in ts:
+    # Go through the pair of templates-dictionaries, adding to them accordingly
+    for t in all_templ:
         try:
             infile = open(template % t, 'r')
 
@@ -242,65 +236,132 @@ for ts, d in templ_dict_pairs:
                 if l in '': continue
 
                 if t[3] == 'pepprop':
-                    parse_pepprop(d, l)
+                    parse_pepprop(alls, l)
                 elif t[3] == 'pepinfo':
-                    parse_pepinfo(d, l, t[1])
+                    parse_pepinfo(alls, l, t[1])
                 elif t[3] == 'protout':
-                    parse_protout(d, l, t[1])
+                    parse_protout(alls, l, t[1])
                 elif t[3] == 'cai':
-                    parse_cai(d, l)
+                    parse_cai(alls, l)
                 elif t[3] == 'poodle':
-                    parse_poodle(d, l)
+                    parse_poodle(alls, l)
                 elif t[3] == 'gpc':
-                    parse_gpc(d, l)
+                    parse_gpc(alls, l)
 
             infile.close()
         except IOError:
             print('error: unable to find file `%s\'' % (template % t))
 
-# Go through the positives and negatives, putting them into a larger, sorted
-# array. Sorts by protein name
-# Also goes through testing data, putting them into a sorted array
-combined_training = []
-combined_testing = []
-for name, attrs in positives.items():
-    combined_training.append(list(range(NUM_ATTRIBUTES+2)))
-    for i in range(NUM_ATTRIBUTES):
-        combined_training[-1][i+1] = attrs[i]
-    combined_training[-1][-1] = POSITIVE
-    combined_training[-1][0] = name
-for name, attrs in negatives.items():
-    combined_training.append(list(range(NUM_ATTRIBUTES+2)))
-    for i in range(NUM_ATTRIBUTES):
-        combined_training[-1][i+1] = attrs[i]
-    combined_training[-1][-1] = NEGATIVE
-    combined_training[-1][0] = name
-for name, attrs in tests.items():
-    combined_testing.append(list(range(NUM_ATTRIBUTES+2)))
-    for i in range(NUM_ATTRIBUTES):
-        combined_testing[-1][i+1] = attrs[i]
-    combined_testing[-1][-1] = TEST
-    combined_testing[-1][0] = name
-combined_training.sort(key=lambda i: i[0])
-combined_testing.sort(key=lambda i: i[0])
+    # Go through everything, putting them into a larger, sorted
+    # array. Sorts by protein name
+    combined = []
+    for name, attrs in alls.items():
+        combined.append(list(range(NUM_ATTRIBUTES+2)))
+        for i in range(NUM_ATTRIBUTES):
+            combined[-1][i+1] = attrs[i]
+        combined[-1][-1] = TEST
+        combined[-1][0] = name
+    combined.sort(key=lambda i: i[0])
 
-# Write everything to CSV file
-try:
-    train_file = open(training_filename, 'w')
-    test_file = open(testing_filename, 'w')
+    # Write everything to CSV file
+    try:
+        test_file = open(testing_filename, 'w')
 
-    # Write the headers to both
-    train_file.write(CSV_HEADER + '\n')
-    test_file.write(CSV_HEADER + '\n')
+        # Write the headers
+        test_file.write(CSV_HEADER + '\n')
 
-    # Write all the data to both
-    for item in combined_training:
-        train_file.write(','.join(item) + '\n')
-    for item in combined_testing:
-        test_file.write(','.join(item) + '\n')
+        # Write all the data
+        for item in combined:
+            test_file.write(','.join(item) + '\n')
 
-    train_file.close()
-    test_file.close()
-except IOError:
-    print('error: unable to write to files `%s\' and/or `%s\'' %
-            (training_filename, testing_filename))
+        test_file.close()
+    except IOError:
+        print('error: unable to write to file `%s\'' % testing_filename)
+else:
+    pos_templ = make_type_templates('pos')
+    negs_templ = make_type_templates('neg')
+    tests_templ = make_type_templates('test')
+
+    positives = defaultdict(defaults)
+    negatives = defaultdict(defaults)
+    tests = defaultdict(defaults)
+
+    # This is for less repetition
+    templ_dict_pairs = [
+            (pos_templ, positives),
+            (negs_templ, negatives),
+            (tests_templ, tests)]
+
+    # Go through the pair of templates-dictionaries, adding to them accordingly
+    for ts, d in templ_dict_pairs:
+        for t in ts:
+            try:
+                infile = open(template % t, 'r')
+
+                for l in infile.readlines():
+                    l = l.rstrip()
+                    if l in '': continue
+
+                    if t[3] == 'pepprop':
+                        parse_pepprop(d, l)
+                    elif t[3] == 'pepinfo':
+                        parse_pepinfo(d, l, t[1])
+                    elif t[3] == 'protout':
+                        parse_protout(d, l, t[1])
+                    elif t[3] == 'cai':
+                        parse_cai(d, l)
+                    elif t[3] == 'poodle':
+                        parse_poodle(d, l)
+                    elif t[3] == 'gpc':
+                        parse_gpc(d, l)
+
+                infile.close()
+            except IOError:
+                print('error: unable to find file `%s\'' % (template % t))
+
+    # Go through the positives and negatives, putting them into a larger, sorted
+    # array. Sorts by protein name
+    # Also goes through testing data, putting them into a sorted array
+    combined_training = []
+    combined_testing = []
+    for name, attrs in positives.items():
+        combined_training.append(list(range(NUM_ATTRIBUTES+2)))
+        for i in range(NUM_ATTRIBUTES):
+            combined_training[-1][i+1] = attrs[i]
+        combined_training[-1][-1] = POSITIVE
+        combined_training[-1][0] = name
+    for name, attrs in negatives.items():
+        combined_training.append(list(range(NUM_ATTRIBUTES+2)))
+        for i in range(NUM_ATTRIBUTES):
+            combined_training[-1][i+1] = attrs[i]
+        combined_training[-1][-1] = NEGATIVE
+        combined_training[-1][0] = name
+    for name, attrs in tests.items():
+        combined_testing.append(list(range(NUM_ATTRIBUTES+2)))
+        for i in range(NUM_ATTRIBUTES):
+            combined_testing[-1][i+1] = attrs[i]
+        combined_testing[-1][-1] = TEST
+        combined_testing[-1][0] = name
+    combined_training.sort(key=lambda i: i[0])
+    combined_testing.sort(key=lambda i: i[0])
+
+    # Write everything to CSV file
+    try:
+        train_file = open(training_filename, 'w')
+        test_file = open(testing_filename, 'w')
+
+        # Write the headers to both
+        train_file.write(CSV_HEADER + '\n')
+        test_file.write(CSV_HEADER + '\n')
+
+        # Write all the data to both
+        for item in combined_training:
+            train_file.write(','.join(item) + '\n')
+        for item in combined_testing:
+            test_file.write(','.join(item) + '\n')
+
+        train_file.close()
+        test_file.close()
+    except IOError:
+        print('error: unable to write to files `%s\' and/or `%s\'' %
+                (training_filename, testing_filename))

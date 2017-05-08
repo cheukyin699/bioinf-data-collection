@@ -23,3 +23,32 @@ Outputs 2 files: 1 file of training data and another for testing. Both files are
 in comma-separated value format. The output data will be named
 `<SPECIMEN NAME>_Training.csv` and `<SPECIMEN NAME>_Testing.csv`. They will be
 written to the current directory, or `<DIRECTORY>` if that option is specified.
+
+Files necessary (using organism E. Coli as an example):
+
+```
+Ecoli_N30_neg.pepinfo
+Ecoli_N30_neg.pepprop
+Ecoli_N30_neg.pepres
+Ecoli_N30_neg.poodle
+Ecoli_N30_neg.protout
+Ecoli_N30_pos.pepinfo
+Ecoli_N30_pos.pepprop
+Ecoli_N30_pos.pepres
+Ecoli_N30_pos.poodle
+Ecoli_N30_pos.protout
+Ecoli_N30_test.pepinfo
+Ecoli_N30_test.pepprop
+Ecoli_N30_test.pepres
+Ecoli_N30_test.poodle
+Ecoli_N30_test.protout
+Ecoli_Nuc_neg.cai
+Ecoli_Nuc_neg.gpc
+Ecoli_Nuc_pos.cai
+Ecoli_Nuc_pos.gpc
+Ecoli_Nuc_test.cai
+Ecoli_Nuc_test.gpc
+Ecoli_WHOLE_neg.protout
+Ecoli_WHOLE_pos.protout
+Ecoli_WHOLE_test.protout
+```

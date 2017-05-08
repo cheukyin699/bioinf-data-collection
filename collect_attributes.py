@@ -267,19 +267,19 @@ combined_testing = []
 for name, attrs in positives.items():
     combined_training.append(list(range(NUM_ATTRIBUTES+2)))
     for i in range(NUM_ATTRIBUTES):
-        combined_training[-1][i+1] = str(attrs[i])
+        combined_training[-1][i+1] = attrs[i]
     combined_training[-1][-1] = POSITIVE
     combined_training[-1][0] = name
 for name, attrs in negatives.items():
     combined_training.append(list(range(NUM_ATTRIBUTES+2)))
     for i in range(NUM_ATTRIBUTES):
-        combined_training[-1][i+1] = str(attrs[i])
+        combined_training[-1][i+1] = attrs[i]
     combined_training[-1][-1] = NEGATIVE
     combined_training[-1][0] = name
 for name, attrs in tests.items():
     combined_testing.append(list(range(NUM_ATTRIBUTES+2)))
     for i in range(NUM_ATTRIBUTES):
-        combined_testing[-1][i+1] = str(attrs[i])
+        combined_testing[-1][i+1] = attrs[i]
     combined_testing[-1][-1] = TEST
     combined_testing[-1][0] = name
 combined_training.sort(key=lambda i: i[0])

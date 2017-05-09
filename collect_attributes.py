@@ -15,8 +15,7 @@ parser.add_argument('specimen', metavar='<specimen>', type=str,
                     help='name of specimen (i.e. Ecoli). Capitalization is optional')
 parser.add_argument('-o', '--output', type=str, metavar='dir', default='./',
                     help='directory of output files (default: current directory)')
-parser.add_argument('-a', '--all', default=False, const=True,
-                    action='store_const', dest='is_all',
+parser.add_argument('-a', '--all', action='store_true', dest='is_all',
                     help='program doesn\'t discriminate ' +
                     '(no positive / negative / training) (default: they discriminate)')
 # Arguments stored with attributes .folder, .specimen, and .directory

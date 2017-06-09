@@ -197,7 +197,7 @@ def parse_poodle(d, line):
     '''
     cols = line.split()
 
-    d[cols[0]][19] = cols[2]
+    d[cols[0]][19] = cols[1]
 
 def parse_gpc(d, line):
     '''

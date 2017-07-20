@@ -10,7 +10,7 @@ To be processed correctly, the filenames should be named like this:
 
 **Where:**
 
-- `<specimen>` is the specimen (i.e. E. Coli)
+- `<specimen>` is the specimen (e.g. `Ecoli`)
 - `<cropped?>` is either `N30` or `WHOLE` meaning the first 30 proteins
   (cropped) or the entire genome
 - `<grouping>` is the group that the data is in (Pos, Neg, Test), either the

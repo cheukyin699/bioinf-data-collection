@@ -272,7 +272,8 @@ if args.is_all:
 
         # Write all the data
         for item in combined:
-            test_file.write(','.join(item) + '\n')
+            if all(map(lambda i: type(i) != int, item)):
+                test_file.write(','.join(item) + '\n')
 
         test_file.close()
     except IOError:

@@ -10,7 +10,7 @@ To be processed correctly, the filenames should be named like this:
 
 **Where:**
 
-- `<specimen>` is the specimen (i.e. E. Coli)
+- `<specimen>` is the specimen (e.g. `Ecoli`)
 - `<cropped?>` is either `N30` or `WHOLE` meaning the first 30 proteins
   (cropped) or the entire genome
 - `<grouping>` is the group that the data is in (Pos, Neg, Test), either the
@@ -103,4 +103,4 @@ Both output files are in CSV format with the following columns:
 
 Col 1 | Col 2 | Col 3 | Col 4 | Col 5 | Col 6 | Col 7 | Col 8 | Col 9 | Col 10 | Col 11 | Col 12 | Col 13 | Col 14 | Col 15 | Col 16 | Col 17 | Col 18 | Col 19 | Col 20 | Col 21 | Col 22 | Col 23
 ---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
-Protein Name | Tiny | Small | Aliphatic | Aromatic | Non-Polar | Polar | Charged | Basic | Acidic | Isoelectric Point | Charge | A280 Molar Coefficients | A280 Extinction Coefficients 1mg/mL | Probability of Expression in Inclusion Bodies | Instability Index | Aliphatic Index | GRAVY | CAI | GPC Content | Molecular Weight | N-30 Disorder | Polarity
+Protein Name | Tiny | Small | Aliphatic | Aromatic | Non-Polar | Polar | Charged | Basic | Acidic | Isoelectric Point | Charge | A280 Molar Coefficients | A280 Extinction Coefficients 1mg/mL | Probability of Expression in Inclusion Bodies | Instability Index | Aliphatic Index | GRAVY | CAI | GPC Content | Molecular Weight | N-30 Disorder | Effector

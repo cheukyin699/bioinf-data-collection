@@ -271,11 +271,15 @@ if args.is_all:
         test_file.write(CSV_HEADER + '\n')
 
         # Write all the data
+        successful = 0
         for item in combined:
             if all(map(lambda i: type(i) != int, item)):
                 test_file.write(','.join(item) + '\n')
+                successful += 1
 
         test_file.close()
+
+        print('%d/%d written successfully' % (successful, len(combined)))
     except IOError:
         print('error: unable to write to file `%s\'' % testing_filename)
 else:
